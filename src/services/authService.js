@@ -1,12 +1,19 @@
 import http from "./httpService";
 import jwtDecode from "jwt-decode";
 import config from "../config.json";
+import { toast } from 'react-toastify';
 
 http.setJwt(getJwt())
 
 export async function login(user) {
-  const { data } = await http.post(`${config.apiUrl}/auth`, user);
-  localStorage.setItem(config.jwt, data.token);
+  try {
+    const { data } = await http.post(`${config.apiUrl}/auth`, user);
+    toast(`Welcome back ${data.name}`)
+    localStorage.setItem(config.jwt, data.token);
+    
+  } catch (ex) {
+    toast(ex.response.data)
+  }
 }
 
 export function loginWithJwt(jwt) {

@@ -1,5 +1,5 @@
 import React from "react";
-import Form from "./common/form";
+import Form from "./forms/form";
 import Joi from "joi-browser";
 import { getUser, login } from "../services/authService";
 import { Navigate } from "react-router-dom";

@@ -1,5 +1,5 @@
 import React from "react";
-import Form from "../components/common/form";
+import Form from "../components/forms/form";
 import Joi from "joi-browser";
 import { register } from "../services/userService";
 import { loginWithJwt } from "../services/authService";

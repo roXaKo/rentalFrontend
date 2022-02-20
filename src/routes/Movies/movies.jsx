@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import { getGenres } from "../services/genreService";
-import { getMovies, deleteMovie } from "../services/movieService";
-import ListGroup from "../components/common/listGroup";
-import MoviesTable from "../components/table/moviesTable";
-import Pagination from "../components/common/pageination";
-import Search from "../components/common/search";
-import { paginate } from "../components/utils/paginate";
+import { getGenres } from "../../services/genreService";
+import { getMovies, deleteMovie } from "../../services/movieService";
+import ListGroup from "../../components/commun/listGroup";
+import MoviesTable from "./moviesTable";
+import Pagination from "../../components/commun/pageination";
+import Search from "../../components/commun/search";
+import { paginate } from "../../components/utils/paginate";
 import { Link } from "react-router-dom";
 import _ from "lodash";
 
@@ -23,7 +23,7 @@ class Movie extends Component {
 
   async componentDidMount() {
     const genres = [{ _id: "", name: "All Genres" }, ...(await getGenres())];
-    const movies = await getMovies()
+    const movies = await getMovies();
     this.setState({ movies, genres });
   }
 
@@ -52,7 +52,9 @@ class Movie extends Component {
   handlePageChange = (page) => {
     this.setState({ currentPage: page });
   };
-
+  handlePageSizeSelect = ({ currentTarget: input }) => {
+    this.setState({ pageSize: input.value });
+  };
   handleGenreSelect = (genre) => {
     this.setState({ selectedGenre: genre, currentPage: 1, search: "" });
   };
@@ -87,7 +89,7 @@ class Movie extends Component {
     const { length: count } = this.state.movies;
     const { pageSize, currentPage, selectedGenre, genres, sortColumn, search } =
       this.state;
-    const {user} = this.props
+    const { user } = this.props;
     if (count === 0) return <p>There are no movies in the database.</p>;
     const { totalCount, data: movies } = this.getPagedData();
     return (
@@ -101,9 +103,11 @@ class Movie extends Component {
         </div>
         <div className="col">
           <p>Showing {totalCount} in the database.</p>
-          {user && <Link className="btn btn-primary" to="/movies/new">
-            New Movie
-          </Link>}
+          {user && (
+            <Link className="btn btn-primary" to="/movies/new">
+              New Movie
+            </Link>
+          )}
           <Search value={search} onChange={this.handleSearch} />
           <MoviesTable
             user={user}
@@ -118,6 +122,7 @@ class Movie extends Component {
             pageSize={pageSize}
             currentPage={currentPage}
             onPageChange={this.handlePageChange}
+            onPageSizeSelect={this.handlePageSizeSelect}
           />
         </div>
       </div>
