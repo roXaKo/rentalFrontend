@@ -1,47 +1,62 @@
 import _ from "lodash";
 import React, { useState, useEffect } from "react";
-import { deleteCustomer, getCustomers } from "../../services/customersService";
-import CustomersTabel from "./CustomersTabel";
+import { deleteCustomer } from "../../services/customersService";
+import RentalsTable from "./RentalsTable";
 import { Link } from "react-router-dom";
 import SearchMulti from "../../components/commun/SearchMulti";
 import Pagination from "../../components/commun/pageination";
 import { paginate } from "../../components/utils/paginate";
+import { getRentals } from "../../services/RentalsService";
 
-const Customers = (props) => {
+const Rentals = (props) => {
   const searchCategories = [
-    { value: "name", name: "Name" },
-    { value: "phone", name: "Phone" },
+    { value: "customer", name: "Customer" },
+    { value: "title", name: "Title" },
+    { value: "dateOut", name: "Date Out" },
   ];
-  const [customers, setCustomers] = useState([]);
+  const [rentals, setRentals] = useState([]);
+  const [rentalsList, setRentalsList] = useState([]);
   const [sortColumn, setSortColumn] = useState({ path: "name", order: "asc" });
   const [searchVal, setSearch] = useState("");
   const [categoryVal, setCategory] = useState(searchCategories[0].value);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(5);
+
   useEffect(() => {
-    if (customers.length === 0) getter();
+    if (rentals.length === 0) getter();
   });
 
   const getter = async () => {
-    const res = await getCustomers();
-    setCustomers(res);
+    const { data } = await getRentals();
+    setRentals(data);
+    let res = data;
+    res = data.filter((d) => !d.dateReturned);
+    res = res.map(
+      (d) =>
+        (d = {
+          _id: d._id,
+          customer: d.customer.name,
+          title: d.title.title,
+          dateOut: d.dateOut,
+        })
+    );
+    setRentalsList(res);
   };
-
 
   const handleDelete = async (customer) => {
     console.log("here");
-    const origCustomers = [...customers];
-    const del = customers.filter((c) => c._id !== customer._id);
-    setCustomers(del);
+    const origCustomers = rentals;
+    const del = rentals.filter((c) => c._id !== customer._id);
+    setRentals(del);
     const res = await deleteCustomer(customer._id);
 
-    if (res["name"] === "Error") setCustomers(origCustomers);
+    if (res["name"] === "Error") setRentals(origCustomers);
   };
 
   const handleSort = ({ sortColumn }) => {
     setSortColumn(sortColumn);
-    const sorted = _.orderBy(customers, [sortColumn.path], [sortColumn.order]);
-    setCustomers(sorted);
+    const sorted = _.orderBy(rentals, [sortColumn.path], [sortColumn.order]);
+    setRentals(sorted);
   };
 
   const handlePageChange = (page) => {
@@ -53,11 +68,11 @@ const Customers = (props) => {
   };
 
   const getPagedData = () => {
-    let data = customers;
+    let data = rentalsList;
 
     if (searchVal) {
       const filter = new RegExp(`.*${searchVal}.*`);
-      data = customers.filter((t) => filter.test(t[categoryVal].toLowerCase()));
+      data = data.filter((t) => filter.test(t[categoryVal].toLowerCase()));
     }
 
     const totalCount = data.length;
@@ -70,9 +85,9 @@ const Customers = (props) => {
   const { data, totalCount } = getPagedData();
 
   return (
-    <div className="m-3 w-75 justify-content-center">
+    <div className="m-3">
       {
-        <Link className="btn btn-primary my-2" to="/customers/new">
+        <Link className="btn btn-primary my-2" to="/rentals/new">
           New Customer
         </Link>
       }
@@ -83,9 +98,9 @@ const Customers = (props) => {
         setSearch={setSearch}
         setCategory={setCategory}
       />
-      <CustomersTabel
+      <RentalsTable
         className="w-50"
-        customers={data}
+        rentals={data}
         sortColumn={sortColumn}
         onSort={handleSort}
         onDelete={handleDelete}
@@ -101,4 +116,4 @@ const Customers = (props) => {
   );
 };
 
-export default Customers;
+export default Rentals;

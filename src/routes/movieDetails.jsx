@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import MoviesForm from "../components/moviesForm";
+import MoviesForm from "../components/forms/moviesForm";
 
 const MovieDetails =  (props) => {
   const { id } = useParams();

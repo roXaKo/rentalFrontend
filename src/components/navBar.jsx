@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
-import Login from "./login";
+import Login from "./forms/loginForm";
 
 const NavBar = (props) => {
   const { routes, user } = props;

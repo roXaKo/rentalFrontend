@@ -2,18 +2,19 @@ import React from "react";
 import Table from "../../components/table/table";
 import { getUser } from "../../services/authService";
 import { Link } from 'react-router-dom';
+import premiumSticker from './../../components/commun/premiumSticker';
 
 
 function CustomersTabel({ customers, sortColumn, onSort, onDelete}) {
   const user = getUser();
   const columns = [
-    { path: "name", label: "Name" },
+    { path: "name", label: "Name", content:(customer =><Link className="text-decoration-none" to={`/customers/profile/${customer._id}`}  state={{customer}}>{customer.name}</Link>) },
     { path: "phone", label: "Phone" },
     {
       path: "isGold",
       label: "Premium",
       content: (customer) =>
-        customer.isGold ? <i className="fa fa-check-circle"></i> : "",
+        premiumSticker(customer)
     },
     {
       key: "edit",

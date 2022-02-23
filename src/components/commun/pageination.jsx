@@ -1,7 +1,7 @@
 import React from "react";
 import _ from "lodash";
 import PropTypes from "prop-types";
-import Select from "../forms/select";
+import Select from "../formComponents/select";
 
 const Pagination = ({ itemsCount, pageSize, onPageChange, currentPage, onPageSizeSelect }) => {
   const pagesCount = Math.ceil(itemsCount / pageSize);

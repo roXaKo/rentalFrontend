@@ -7,9 +7,7 @@ import Joi from "joi-browser";
 export default function TableSfc(data, error, setData, setError, schema) {
   const handleChange = ({ currentTarget: input }) => {
     const err = { ...error };
-    console.log(err);
     const errorMessage = validateProperty(input);
-    console.log(errorMessage);
     err[input.id] = errorMessage;
     if (errorMessage) setError(err);
     else delete error[input.id];
@@ -42,13 +40,14 @@ export default function TableSfc(data, error, setData, setError, schema) {
     return Object.keys(error).length === 0 ? null : error;
   };
 
-  const renderInput = (name, label, type = "text") => {
+  const renderInput = (name, label, type = "text", datalist = "") => {
     return (
       <Input
         type={type}
         name={name}
         value={data[name]}
         label={label}
+        datalist={datalist}
         onChange={handleChange}
         error={error[name]}
       />

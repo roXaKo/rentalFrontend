@@ -19,10 +19,10 @@ function SearchMulti({
         onChange={e=>setSearch(e.currentTarget.value)}
       />
       <select
-        className="btln btn-outine-secondary dropdown-toggle"
+        className="btn btn-secondary dropdown-toggle"
         value={categoryVal}
         type="button"
-        data-bs-toggle="dropdown"
+        // data-bs-toggle="dropdown"
         aria-expanded="false"
         onChange={e=>setCategory(e.currentTarget.value)}
       >

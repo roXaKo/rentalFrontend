@@ -9,7 +9,7 @@ import { ToastContainer } from "react-toastify";
 import Movie from "./routes/Movies/movies";
 import NewMovie from "./routes/newMovie";
 import Customers from "./routes/Customers/Customers";
-import Rentals from "./routes/rentals";
+import Rentals from "./routes/Rentals/rentals";
 import MovieDetails from "./routes/movieDetails";
 import NotFound from "./routes/notFound";
 import Register from "./routes/register";
@@ -20,6 +20,10 @@ import { RequireAuth } from "./components/commun/requireAuth";
 import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
 import CustomersDetails from "./routes/CustomersDetails";
+import RentalDetails from "./routes/RentalDetails";
+import NewRental from "./routes/NewRental";
+import CustomersProfile from "./routes/CustomersProfile/CustomersProfile";
+import Me from "./routes/Me";
 
 function App() {
   const user = getUser();
@@ -33,9 +37,10 @@ function App() {
   };
 
   return (
-    <div>
+    <div >
       <ToastContainer />
       <NavBar {...props} />
+      <div>
       <Routes>
         <Route path="/logout" element={<Logout {...props} />} />
         <Route element={<RequireAuth />}>
@@ -43,14 +48,19 @@ function App() {
           <Route path="/movies/:id" element={<MovieDetails {...props} />} />
           <Route path="/customers/:id" element={<CustomersDetails />} />
           <Route path="/customers/new" element={<CustomersDetails />} />
+          <Route path="/rentals/:id" element={<RentalDetails />} />
+          <Route path="/rentals" element={<Rentals {...props} />} />
+          <Route path="/customers" element={<Customers {...props} />} />
+          <Route path="/rentals/new" element={<NewRental />} />
+          <Route path="/:name" element={<Me/>} />
         </Route>
+        <Route path="/customers/profile/:id" element={<CustomersProfile props={""}/>} />
         <Route path="/movies" element={<Movie {...props} />} />
-        <Route path="/customers" element={<Customers {...props} />} />
-        <Route path="/rentals" element={<Rentals {...props} />} />
         <Route path="/register" element={<Register {...props} />} />
         <Route path="/" element={<Movie {...props} />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      </div>
     </div>
   );
 }

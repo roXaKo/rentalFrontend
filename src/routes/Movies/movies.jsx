@@ -87,13 +87,14 @@ class Movie extends Component {
   };
   render() {
     const { length: count } = this.state.movies;
-    const { pageSize, currentPage, selectedGenre, genres, sortColumn, search } =
-      this.state;
+    const { pageSize, currentPage, selectedGenre, genres, sortColumn, search } = this.state;
     const { user } = this.props;
+    
     if (count === 0) return <p>There are no movies in the database.</p>;
     const { totalCount, data: movies } = this.getPagedData();
+
     return (
-      <div className="row g-3">
+      <div className="row m-3 w-50 ">
         <div className="col-2 ">
           <ListGroup
             items={genres}
@@ -110,6 +111,7 @@ class Movie extends Component {
           )}
           <Search value={search} onChange={this.handleSearch} />
           <MoviesTable
+          
             user={user}
             movies={movies}
             sortColumn={sortColumn}

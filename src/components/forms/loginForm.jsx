@@ -1,7 +1,7 @@
 import React from "react";
-import Form from "./forms/form";
+import Form from "../formComponents/form";
 import Joi from "joi-browser";
-import { getUser, login } from "../services/authService";
+import { getUser, login } from "../../services/authService";
 import { Navigate } from "react-router-dom";
 
 class Login extends Form {

@@ -2,8 +2,8 @@ import React,{ useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Joi from "joi-browser";
 import { toast } from "react-toastify";
-import { getCustomer, postCustomer, putCustomer } from "../services/customersService";
-import FormSfc from "./forms/FormSfc";
+import { getCustomer, postCustomer, putCustomer } from "../../services/customersService";
+import FormSfc from "../formComponents/FormSfc";
 
 function CustomersForm(props) {
   const navigate = useNavigate()

@@ -3,6 +3,7 @@ import React from "react";
 const Search = ({value,onChange}) => {
   return (
       <input
+      
         id="search"
         type="search"
         name="search"

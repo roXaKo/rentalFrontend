@@ -1,5 +1,5 @@
 import React from "react";
-import CustomersForm from "./../components/CustomersForm";
+import CustomersForm from "../components/forms/CustomersForm";
 
 function CustomersDetails(props) {
 

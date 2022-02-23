@@ -5,11 +5,21 @@ import { toast } from "react-toastify";
 export async function getCustomers() {
   try {
     const res = await http.get(`${config.apiUrl}/customer`);
-    return res;
+    return res.data;
   } catch (ex) {
     toast(ex.error);
   }
 }
+
+export async function getRentalsOfCustomer(_id) {
+  try {
+    const res = await http.get(`${config.apiUrl}/rental/customer/${_id}`);
+    return res.data;
+  } catch (ex) {
+    toast(ex.error);
+  }
+}
+
 export async function getCustomer(_id) {
   try {
     const res = await http.get(`${config.apiUrl}/customer/${_id}`);
@@ -31,7 +41,7 @@ export async function deleteCustomer(_id) {
     const res = await http.delete(`${config.apiUrl}/customer/${_id}`);
     return res;
   } catch (ex) {
-      toast(ex.response.data)
+    toast(ex.response.data);
     return ex;
   }
 }

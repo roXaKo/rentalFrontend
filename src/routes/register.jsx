@@ -1,7 +1,7 @@
 import React from "react";
-import Form from "../components/forms/form";
+import Form from "../components/formComponents/form";
 import Joi from "joi-browser";
-import { register } from "../services/userService";
+import { registerUser } from "../services/userService";
 import { loginWithJwt } from "../services/authService";
 import { Navigate } from 'react-router-dom';
 import { getUser } from "../services/authService";
@@ -23,7 +23,7 @@ class Register extends Form {
   };
   doSubmit = async () => {
     try {
-      const res = await register(this.state.data);
+      const res = await registerUser(this.state.data);
       loginWithJwt(res.headers["x-auth-token"]);
       this.props.navigate("/");
     } catch (ex) {
