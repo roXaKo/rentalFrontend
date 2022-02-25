@@ -14,7 +14,7 @@ const Pagination = ({ itemsCount, pageSize, onPageChange, currentPage, onPageSiz
   ]
   return (
     <div>
-      <ul className="pagination justify-content-center">
+      <ul className="pagination justify-content-center form-control">
         {pages.map((page) => (
           <li
             className={page === currentPage ? "page-item active" : "page-item"}
@@ -25,14 +25,17 @@ const Pagination = ({ itemsCount, pageSize, onPageChange, currentPage, onPageSiz
             </button>
           </li>
         ))}
-        <Select
-          id="pageSizeSelect"
-          name="pageSizeSelect"
-          value={pageSize}
-          options={pageSizeOptions}
-          label=""
-          onChange={onPageSizeSelect}
-        />
+        <li className="">
+          <Select
+            paginate={true}
+            id="pageSizeSelect"
+            name="pageSizeSelect"
+            value={pageSize}
+            options={pageSizeOptions}
+            label=""
+            onChange={onPageSizeSelect}
+          />
+        </li>
       </ul>
     </div>
   );

@@ -1,4 +1,4 @@
 {
-  "apiUrl": "https://nameless-island-05293.herokuapp.com/api",
+  "apiUrl": "http://192.168.0.234:3900/api",
   "jwt": "x-auth-token"
 }
