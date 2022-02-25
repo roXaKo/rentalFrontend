@@ -7,12 +7,11 @@ const NavBar = (props) => {
 
   const renderNav = (nav) => {
     return (
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark ">
+      <nav className="navbar navbar-expand navbar-dark bg-dark ">
         <Link to="/" className="navbar-brand mx-3">
           Vidly
         </Link>
-        <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div className="navbar-nav"></div>
+        <div className="collapse navbar-collapse alligne-center" id="navbarNavAltMarkup">
           {nav.map((el) => (
             <NavLink
               key={el}

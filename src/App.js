@@ -40,7 +40,7 @@ function App() {
     <div >
       <ToastContainer />
       <NavBar {...props} />
-      <div>
+      <div id="routes">
       <Routes>
         <Route path="/logout" element={<Logout {...props} />} />
         <Route element={<RequireAuth />}>

@@ -88,7 +88,7 @@ const Rentals = (props) => {
     <div className="m-3">
       {
         <Link className="btn btn-primary my-2" to="/rentals/new">
-          New Customer
+          New Rental
         </Link>
       }
       <SearchMulti

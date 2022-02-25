@@ -1,12 +1,10 @@
 import React from "react";
 import Table from "../../components/table/table";
-import { getUser } from "../../services/authService";
 import { Link } from 'react-router-dom';
 import premiumSticker from './../../components/commun/premiumSticker';
 
 
 function CustomersTabel({ customers, sortColumn, onSort, onDelete}) {
-  const user = getUser();
   const columns = [
     { path: "name", label: "Name", content:(customer =><Link className="text-decoration-none" to={`/customers/profile/${customer._id}`}  state={{customer}}>{customer.name}</Link>) },
     { path: "phone", label: "Phone" },

@@ -51,7 +51,8 @@ class MoviesForm extends Form {
     this.props.navigate("/movies");
     let res;
     if (!this.props.id) res = await postMovie(this.state.data);
-    else res = await putMovie(this.state.data);
+    else res = await putMovie(
+    );
 
     if (res.response && res.response.status >= 300)
       this.state.data._id
@@ -62,7 +63,8 @@ class MoviesForm extends Form {
   render() {
     const { genres } = this.state;
     return (
-      <div className="m-2">
+      <div className="justify-content-center ">
+        {!this.state.db &&<h1>New Movie</h1>}
         {this.state.db &&<h1>Movie Details of "{this.state.data.title}"</h1>}
         <form onSubmit={this.handleSubmit}>
           {this.renderInput("title", "Title")}

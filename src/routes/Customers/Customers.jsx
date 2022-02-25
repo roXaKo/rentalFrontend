@@ -70,7 +70,7 @@ const Customers = (props) => {
   const { data, totalCount } = getPagedData();
 
   return (
-    <div className="m-3 w-75 justify-content-center">
+    <div className="m-3 ">
       {
         <Link className="btn btn-primary my-2" to="/customers/new">
           New Customer

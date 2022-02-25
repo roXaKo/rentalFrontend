@@ -2,7 +2,7 @@ import React from "react";
 
 const Select = ({ error, name, options, label, value, ...rest }) => {
   return (
-    <div className="form-group ">
+    <div className="form-group m-1">
       {label && <label htmlFor={name}>{label}</label>}
       <select {...rest} className="form-select">
         {!value && <option value=""></option>}
