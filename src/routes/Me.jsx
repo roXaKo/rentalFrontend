@@ -55,8 +55,8 @@ function Me(props) {
     <div className="m-3"> 
       <form onSubmit={handleSubmit}>
         {renderInput("email", "Email", "email")}
-        {renderInput("password", "Password", "password")}
         {renderInput("name", "Name")}
+        {renderInput("password", "Password", "password")}
         {renderButton("Submit")}
       </form>
     </div>

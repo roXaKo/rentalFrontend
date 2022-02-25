@@ -24,6 +24,7 @@ import RentalDetails from "./routes/RentalDetails";
 import NewRental from "./routes/NewRental";
 import CustomersProfile from "./routes/CustomersProfile/CustomersProfile";
 import Me from "./routes/Me";
+import Footer from "./components/Footer";
 
 function App() {
   const user = getUser();
@@ -61,6 +62,7 @@ function App() {
         <Route path="*" element={<NotFound />} />
       </Routes>
       </div>
+      <Footer />
     </div>
   );
 }
