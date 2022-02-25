@@ -1,17 +1,11 @@
 import React, { Component } from "react";
 import Table from "../../components/table/table";
-import Like from "../../components/commun/like";
 import { Link } from "react-router-dom";
 
 class MoviesTable extends Component {
 
   columns = [
-    {
-      key: "like",
-      content: (movie) => (
-        <Like elem={movie} onLike={() => this.props.onLike(movie)} />
-      ),
-    },
+   
     {
       path: "title",
       label: "Title",
